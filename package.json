@@ -4,6 +4,10 @@
   "description": "Simple type definitions for the TruckersMP API.",
   "author": "TruckersMP",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TruckersMP/API-Types"
+  },
   "scripts": {
     "build": "tsc && run-p esm:*",
     "esm:traffic": "gen-esm-wrapper traffic/index.js traffic/index.mjs",
