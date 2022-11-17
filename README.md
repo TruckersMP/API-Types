@@ -14,8 +14,8 @@ This library supports only documented properties.
 Install with npm / yarn:
 
 ```
-npm install @truckersmp/api-types
-yarn add @truckersmp/api-types
+npm install @truckersmp_official/api-types
+yarn add @truckersmp_official/api-types
 ```
 
 ## Example
