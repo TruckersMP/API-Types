@@ -24,7 +24,8 @@ Performing a `GET` request to retrieve player's data using the [axios](https://g
 
 ```ts
 import axios, { AxiosInstance } from 'axios';
-import { APIPlayer, APIResponse, APIWebRoutes, APIWebRouteBases } from '@truckersmp/api-types/v2';
+import { APIWebRoutes, APIWebRouteBases } from '@truckersmp_official/api-types/v2';
+import type { APIPlayer, APIResponse } from '@truckersmp_official/api-types/v2';
 
 class APIManager {
   private readonly web: AxiosInstance;
