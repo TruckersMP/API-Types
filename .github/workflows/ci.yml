@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  pull_request:
+    paths:
+      - '**.json'
+      - '**.js'
+      - '**.ts'
+  push:
+    branches:
+      - main
+
+jobs:
+  eslint:
+    name: ESLint Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install Node v18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: ESLint
+        run: npx eslint --ext .ts web/ traffic/
