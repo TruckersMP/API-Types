@@ -1,5 +1,12 @@
 <p align="center"><img src="https://truckersmp.com/assets/img/truckersmp-logo-sm.png"></p>
 
+<p align="center">
+<a href="https://github.com/TruckersMP/API-Types/blob/HEAD/LICENSE.md"><img alt="GitHub" src="https://img.shields.io/github/license/TruckersMP/api-types"></a>
+<a href="https://www.npmjs.com/package/@truckersmp_official/api-types"><img alt="npm" src="https://img.shields.io/npm/v/@truckersmp_official/api-types"></a>
+<a href="https://www.npmjs.com/package/@truckersmp_official/api-types"><img alt="npm" src="https://img.shields.io/npm/dt/@truckersmp_official/api-types"></a>
+<a href="https://github.com/TruckersMP/API-Types/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/TruckersMP/API-Types/actions/workflows/ci.yml/badge.svg"></a>
+</p>
+
 ## Introduction
 
 This simple TruckersMP TypeScript library provides type definitions for the TruckersMP API (and other connected
