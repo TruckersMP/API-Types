@@ -17,7 +17,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APIBan[]>
    */
-  bans(id: bigint) {
+  bans(id: bigint | string) {
     return `/bans/${id}` as const;
   },
 
@@ -64,7 +64,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APIGameEvent>
    */
-  companyEvent(companyId: string | number, eventId: number) {
+  companyEvent(companyId: string | number, eventId: number | string) {
     return `/vtc/${companyId}/events/${eventId}` as const;
   },
 
@@ -89,7 +89,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APICompanyMember>
    */
-  companyMember(companyId: string | number, memberId: number) {
+  companyMember(companyId: string | number, memberId: number | string) {
     return `/vtc/${companyId}/member/${memberId}` as const;
   },
 
@@ -114,7 +114,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APICompanyNewsEntry>
    */
-  companyNewsEntry(companyId: string | number, newsId: number) {
+  companyNewsEntry(companyId: string | number, newsId: number | string) {
     return `/vtc/${companyId}/news/${newsId}` as const;
   },
 
@@ -139,7 +139,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APICompanyRoleEntry>
    */
-  companyRole(companyId: string | number, roleId: number) {
+  companyRole(companyId: string | number, roleId: number | string) {
     return `/vtc/${companyId}/role/${roleId}` as const;
   },
 
@@ -151,7 +151,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APIGameEvent>
    */
-  event(id: number) {
+  event(id: number | string) {
     return `/events/${id}` as const;
   },
 
@@ -173,7 +173,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APIGameEventSimple[]>
    */
-  eventsUser(id: number) {
+  eventsUser(id: number | string) {
     return `/events/user/${id}` as const;
   },
 
@@ -185,7 +185,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APIPlayer>
    */
-  player(id: bigint) {
+  player(id: bigint | number | string) {
     return `/player/${id}` as const;
   },
 

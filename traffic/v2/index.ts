@@ -1,9 +1,9 @@
-import type { APITrafficServerGameName } from './server';
+import type { APITrafficServerGameName } from "./server";
 
-export * from './server';
-export * from './traffic';
+export * from "./server";
+export * from "./traffic";
 
-export const APITrafficVersion = '2';
+export const APITrafficVersion = "2" as const;
 
 export const APITrafficRoutes = {
   /**
@@ -13,7 +13,7 @@ export const APITrafficRoutes = {
    * @returns APIResponse<APITrafficServers>
    */
   servers() {
-    return '/public/servers.json' as const;
+    return "/public/servers.json" as const;
   },
 
   /**

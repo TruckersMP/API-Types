@@ -61,7 +61,7 @@ export interface APIGameEventType {
   /**
    * The event's type key.
    */
-  key: string;
+  key: "convoy" | "truck_show" | "truck_show_and_convoy";
 
   /**
    * The event's type name.
@@ -242,6 +242,11 @@ export interface APIGameEvent {
   arrive: APIGameEventLocation;
 
   /**
+   * The date and time the event's meetup is scheduled at (UTC).
+   */
+  meetup_at: string | null;
+
+  /**
    * The date and time the event starts at (UTC).
    */
   start_at: string;
@@ -298,8 +303,11 @@ export interface APIGameEvent {
 
   /**
    * The event's required DLCs.
+   *
+   * - Empty array when no DLCs are required;
+   * - Record<string, string> when 1 or more DLCs are required, where the key is the Steam app ID and value is the DLC's name.
    */
-  dlcs: Record<string, string>;
+  dlcs: Record<string, string> | [];
 
   /**
    * The relative URL to the event page.

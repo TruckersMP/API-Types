@@ -26,12 +26,18 @@ export interface APIPlayerBan {
   reason: string;
 
   /**
-   * Name of the admin that banned the user.
+   * @deprecated - v2.21.1.0
+   * Name of the admin that banned the user. This field is no longer provided.
+   * @see https://forum.truckersmp.com/index.php?/topic/112993-website-v221-release/#comment-1111277
    */
-  adminName: string;
+  adminName: "Game Moderator";
 
   /**
-   * TruckersMP ID for the admin that banned the user.
+   * @deprecated - v2.21.1.0
+   * TruckersMP ID for the admin that banned the user. This field is no longer provided.
+   * @see https://forum.truckersmp.com/index.php?/topic/112993-website-v221-release/#comment-1111277
    */
-  adminID: number;
+  adminID: null;
 }
+
+export type APIPlayerBans = APIPlayerBan[];
