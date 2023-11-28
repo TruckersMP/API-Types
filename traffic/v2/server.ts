@@ -1,7 +1,7 @@
 /**
  * A short name of a game map type.
  */
-export type APITrafficServerGameName = "ets2" | "promods" | "ats";
+export type APITrafficServerGameName = 'ets2' | 'promods' | 'ats';
 
 /**
  * Basic information of a TruckersMP server.

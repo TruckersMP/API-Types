@@ -61,7 +61,7 @@ export interface APIGameEventType {
   /**
    * The event's type key.
    */
-  key: "convoy" | "truck_show" | "truck_show_and_convoy";
+  key: 'convoy' | 'truck_show' | 'truck_show_and_convoy';
 
   /**
    * The event's type name.
@@ -305,7 +305,7 @@ export interface APIGameEvent {
    * The event's required DLCs.
    *
    * - Empty array when no DLCs are required;
-   * - Record<string, string> when 1 or more DLCs are required, where the key is the Steam app ID and value is the DLC's name.
+   * - Record<string, string> when DLCs are required, where the key is the Steam app ID and value is the DLC's name.
    */
   dlcs: Record<string, string> | [];
 

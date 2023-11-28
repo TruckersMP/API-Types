@@ -1,14 +1,14 @@
-import type { APITrafficServer } from "./server";
+import type { APITrafficServer } from './server';
 
 /**
  * The congestion severity of the given location.
  */
 export type APITrafficLocationSeverity =
-  | "Empty"
-  | "Low"
-  | "Moderate"
-  | "Congested"
-  | "Heavy";
+  | 'Empty'
+  | 'Low'
+  | 'Moderate'
+  | 'Congested'
+  | 'Heavy';
 
 /**
  * Information about a traffic location on the map.
@@ -54,7 +54,7 @@ export interface APITrafficServerTop {
    * Basic information of a TruckersMP server.
    * @see https://truckersmp.com/developers/api#operation/get-servers
    */
-  server?: Omit<APITrafficServer, "urls">;
+  server?: Omit<APITrafficServer, 'urls'>;
 
   /**
    * 8 busiest locations on the map (descending order).
@@ -77,7 +77,7 @@ export type APITrafficServerTraffic =
        * Basic information of a TruckersMP server.
        * @see https://truckersmp.com/developers/api#operation/get-servers
        */
-      server: Omit<APITrafficServer, "urls">;
+      server: Omit<APITrafficServer, 'urls'>;
 
       /**
        * All locations on the map.

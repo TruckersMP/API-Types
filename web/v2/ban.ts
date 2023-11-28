@@ -30,7 +30,7 @@ export interface APIPlayerBan {
    * Name of the admin that banned the user. This field is no longer provided.
    * @see https://forum.truckersmp.com/index.php?/topic/112993-website-v221-release/#comment-1111277
    */
-  adminName: "Game Moderator";
+  adminName: 'Game Moderator';
 
   /**
    * @deprecated - v2.21.1.0
