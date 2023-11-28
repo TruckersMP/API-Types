@@ -3,7 +3,7 @@ import type { APITrafficServerGameName } from './server';
 export * from './server';
 export * from './traffic';
 
-export const APITrafficVersion = '2';
+export const APITrafficVersion = '2' as const;
 
 export const APITrafficRoutes = {
   /**

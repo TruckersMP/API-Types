@@ -3,7 +3,12 @@ import type { APITrafficServer } from './server';
 /**
  * The congestion severity of the given location.
  */
-export type APITrafficLocationSeverity = 'Empty' | 'Low' | 'Moderate' | 'Congested' | 'Heavy';
+export type APITrafficLocationSeverity =
+  | 'Empty'
+  | 'Low'
+  | 'Moderate'
+  | 'Congested'
+  | 'Heavy';
 
 /**
  * Information about a traffic location on the map.
@@ -60,21 +65,40 @@ export interface APITrafficServerTop {
 /**
  * Response type for all locations on the game server.
  */
-export interface APITrafficServerTraffic {
-  /**
-   * Determines whether the service is offline. If this is the case, no servers
-   * and/or traffic information may be provided.
-   */
-  offline: boolean;
+export type APITrafficServerTraffic =
+  | {
+      /**
+       * Determines whether the service is offline. If this is the case, no servers
+       * and/or traffic information may be provided.
+       */
+      offline: false;
 
-  /**
-   * Basic information of a TruckersMP server.
-   * @see https://truckersmp.com/developers/api#operation/get-servers
-   */
-  server?: Omit<APITrafficServer, 'urls'>;
+      /**
+       * Basic information of a TruckersMP server.
+       * @see https://truckersmp.com/developers/api#operation/get-servers
+       */
+      server: Omit<APITrafficServer, 'urls'>;
 
-  /**
-   * All locations on the map.
-   */
-  traffic?: APITrafficLocation[];
-}
+      /**
+       * All locations on the map.
+       */
+      traffic: APITrafficLocation[];
+    }
+  | {
+      /**
+       * Determines whether the service is offline. If this is the case, no servers
+       * and/or traffic information may be provided.
+       */
+      offline: true;
+
+      /**
+       * Basic information of a TruckersMP server.
+       * @see https://truckersmp.com/developers/api#operation/get-servers
+       */
+      server?: never;
+
+      /**
+       * All locations on the map.
+       */
+      traffic?: never;
+    };
