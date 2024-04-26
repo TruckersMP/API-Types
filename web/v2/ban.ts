@@ -39,5 +39,3 @@ export interface APIPlayerBan {
    */
   adminID: null;
 }
-
-export type APIPlayerBans = APIPlayerBan[];

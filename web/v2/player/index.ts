@@ -47,7 +47,7 @@ export type APIPlayerCompanyMember = {
    */
   memberID: 0;
 } | {
-   /**
+  /**
    * ID of the company the user belongs to or 0 if not in a company.
    */
   id: number;
@@ -107,7 +107,7 @@ export interface APIPlayerCompanyHistory {
  * Information about a TruckersMP player.
  * @see https://truckersmp.com/developers/api#operation/get-player-id
  */
-export type APIPlayer = _Base & _VTCHistory & _BanData;
+export type APIPlayer = _Base & _APIPlayerVTCHistory & _APIPlayerBanData;
 
 // #region APIPlayer
 
@@ -179,8 +179,8 @@ interface _Base {
   banned: boolean;
 
   /**
-   * @deprecated
-   * This field is no longer available and will be returned as `null`.
+   * @deprecated - v2.21.1.0
+   * This field is no longer provided.
    */
   bannedUntil: null;
 
@@ -217,30 +217,28 @@ interface _Base {
   vtcHistory: APIPlayerCompanyHistory[] | null;
 }
 
-/** Properties specific to the player resource when VTC information is hidden */
-interface _VTCHistoryHidden extends Pick<_Base, 'displayVTCHistory' | 'vtcHistory'> {
-  displayVTCHistory: false;
-  vtcHistory: null;
-}
+type _APIPlayerVTCHistory = Pick<_Base, 'displayVTCHistory' | 'vtcHistory'> &
+  (
+    | {
+        displayVTCHistory: false;
+        vtcHistory: null;
+      }
+    | {
+        displayVTCHistory: true;
+        vtcHistory: APIPlayerCompanyHistory[];
+      }
+  );
 
-/** Properties specific to the player resource when VTC information is public */
-interface _VTCHistoryPublic extends Pick<_Base, 'displayVTCHistory' | 'vtcHistory'> {
-  displayVTCHistory: true;
-  vtcHistory: APIPlayerCompanyHistory[];
-}
-type _VTCHistory = _VTCHistoryHidden | _VTCHistoryPublic;
-
-/** Properties specific to the player resource when ban information is hidden */
-interface _BansHidden extends Pick<_Base, 'displayBans' | 'bansCount'> {
-  displayBans: false;
-  bansCount: null;
-}
-
-/** Properties specific to the player resource when ban information is public */
-interface _BansPublic extends Pick<_Base, 'displayBans' | 'bansCount'> {
-  displayBans: true;
-  bansCount: number;
-}
-type _BanData = _BansHidden | _BansPublic;
+type _APIPlayerBanData = Pick<_Base, 'displayBans' | 'bansCount'> &
+  (
+    | {
+        displayBans: false;
+        bansCount: null;
+      }
+    | {
+        displayBans: true;
+        bansCount: number;
+      }
+  );
 
 // #endregion APIPlayer

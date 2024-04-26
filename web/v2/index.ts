@@ -39,7 +39,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APICompany>
    */
-  company(id: string | number) {
+  company(id: number | string) {
     return `/vtc/${id}` as const;
   },
 
@@ -51,7 +51,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APIGameEventSimple[]>
    */
-  companyEvents(companyId: string | number) {
+  companyEvents(companyId: number | string) {
     return `/vtc/${companyId}/events` as const;
   },
 
@@ -64,7 +64,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APIGameEvent>
    */
-  companyEvent(companyId: string | number, eventId: number | string) {
+  companyEvent(companyId: number | string, eventId: number) {
     return `/vtc/${companyId}/events/${eventId}` as const;
   },
 
@@ -76,7 +76,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APICompanyMembers>
    */
-  companyMembers(companyId: string | number) {
+  companyMembers(companyId: number | string) {
     return `/vtc/${companyId}/members` as const;
   },
 
@@ -89,7 +89,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APICompanyMember>
    */
-  companyMember(companyId: string | number, memberId: number | string) {
+  companyMember(companyId: number | string, memberId: number) {
     return `/vtc/${companyId}/member/${memberId}` as const;
   },
 
@@ -101,7 +101,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APICompanyNews>
    */
-  companyNews(companyId: string | number) {
+  companyNews(companyId: number | string) {
     return `/vtc/${companyId}/news` as const;
   },
 
@@ -114,7 +114,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APICompanyNewsEntry>
    */
-  companyNewsEntry(companyId: string | number, newsId: number | string) {
+  companyNewsEntry(companyId: number | string, newsId: number) {
     return `/vtc/${companyId}/news/${newsId}` as const;
   },
 
@@ -126,7 +126,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APICompanyRoles>
    */
-  companyRoles(companyId: string | number) {
+  companyRoles(companyId: number) {
     return `/vtc/${companyId}/roles` as const;
   },
 
@@ -139,7 +139,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APICompanyRoleEntry>
    */
-  companyRole(companyId: string | number, roleId: number | string) {
+  companyRole(companyId: number | string, roleId: number) {
     return `/vtc/${companyId}/role/${roleId}` as const;
   },
 
@@ -151,7 +151,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APIGameEvent>
    */
-  event(id: number | string) {
+  event(id: number) {
     return `/events/${id}` as const;
   },
 
@@ -173,7 +173,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APIGameEventSimple[]>
    */
-  eventsUser(id: number | string) {
+  eventsUser(id: number) {
     return `/events/user/${id}` as const;
   },
 
@@ -185,7 +185,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APIPlayer>
    */
-  player(id: bigint | number | string) {
+  player(id: bigint | number) {
     return `/player/${id}` as const;
   },
 
