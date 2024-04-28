@@ -107,12 +107,12 @@ export interface APIPlayerCompanyHistory {
  * Information about a TruckersMP player.
  * @see https://truckersmp.com/developers/api#operation/get-player-id
  */
-export type APIPlayer = _Base & _APIPlayerVTCHistory & _APIPlayerBanData;
+export type APIPlayer = _APIPlayerBase & _APIPlayerVTCHistory & _APIPlayerBanData;
 
-// #region APIPlayer
-
-/** Base interface containing property annotations */
-interface _Base {
+/**
+ * Base interface containing property annotations
+ */
+interface _APIPlayerBase {
   /**
    * The ID of the requested user.
    */
@@ -217,7 +217,10 @@ interface _Base {
   vtcHistory: APIPlayerCompanyHistory[] | null;
 }
 
-type _APIPlayerVTCHistory = Pick<_Base, 'displayVTCHistory' | 'vtcHistory'> &
+/**
+ * Specific properties of the player object regarding their VTC history
+ */
+type _APIPlayerVTCHistory = Pick<_APIPlayerBase, 'displayVTCHistory' | 'vtcHistory'> &
   (
     | {
         displayVTCHistory: false;
@@ -229,7 +232,10 @@ type _APIPlayerVTCHistory = Pick<_Base, 'displayVTCHistory' | 'vtcHistory'> &
       }
   );
 
-type _APIPlayerBanData = Pick<_Base, 'displayBans' | 'bansCount'> &
+/**
+ * Specific properties of the player object regarding bans
+ */
+type _APIPlayerBanData = Pick<_APIPlayerBase, 'displayBans' | 'bansCount'> &
   (
     | {
         displayBans: false;
@@ -240,5 +246,3 @@ type _APIPlayerBanData = Pick<_Base, 'displayBans' | 'bansCount'> &
         bansCount: number;
       }
   );
-
-// #endregion APIPlayer

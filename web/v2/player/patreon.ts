@@ -1,4 +1,15 @@
-/** Base interface containing property type annotations and documentation. */
+/**
+ * Information about player's Patreon status.
+ */
+type APIPlayerPatreon =
+  | _APIPlayerPatreonPrivate
+  | _APIPlayerPatreonNonPatron
+  | _APIPlayerPatreonIsPatron;
+export default APIPlayerPatreon;
+
+/**
+ * Base interface containing property type annotations and documentation.
+ */
 interface _APIPlayerPatreonBase {
   /**
    * If the user has donated or is currently donating via Patreon.
@@ -41,8 +52,10 @@ interface _APIPlayerPatreonBase {
   hidden: boolean | null;
 }
 
-/** `patreon` field when the user has their Patreon information hidden */
-interface _APIPartialPlayerPatreonPrivate extends _APIPlayerPatreonBase {
+/**
+ * `patreon` field when the user has their Patreon information hidden
+ */
+interface _APIPlayerPatreonPrivate extends _APIPlayerPatreonBase {
   isPatron: false | null;
   active: null;
   color: null;
@@ -53,16 +66,19 @@ interface _APIPartialPlayerPatreonPrivate extends _APIPlayerPatreonBase {
   hidden: true;
 }
 
-// #region Properties specific to the `patreon` field when the information is public
-
-/** Base interface for public Patreon information */
+/**
+ * Base interface for public Patreon information
+ */
 interface _APIPartialPlayerPatreonPublicBase {
   lifetimePledge: number | null;
   hidden: false | null;
 }
 
-/** Properties specific to the `patreon` field when the user is an inactive patron */
-interface _APIPartialPlayerPatreonInactive extends _APIPartialPlayerPatreonPublicBase {
+/**
+ * Properties specific to the `patreon` field when the user is an inactive patron
+ */
+interface _APIPartialPlayerPatreonPublicInactive
+  extends _APIPartialPlayerPatreonPublicBase {
   active: false;
   color: null;
   tierId: null;
@@ -70,8 +86,11 @@ interface _APIPartialPlayerPatreonInactive extends _APIPartialPlayerPatreonPubli
   nextPledge: null;
 }
 
-/** Properties specific to the `patreon` field when the user is an active patron */
-interface _APIPartialPlayerPatreonActive extends _APIPartialPlayerPatreonPublicBase {
+/**
+ * Properties specific to the `patreon` field when the user is an active patron
+ */
+interface _APIPartialPlayerPatreonPublicActive
+  extends _APIPartialPlayerPatreonPublicBase {
   active: true;
   color: string;
   tierId: number;
@@ -79,19 +98,18 @@ interface _APIPartialPlayerPatreonActive extends _APIPartialPlayerPatreonPublicB
   nextPledge: number | null;
 }
 
-/** `patreon` field when the user is a current or former patron */
-type _APIPlayerPatreonIsPatron =
-  & _APIPlayerPatreonBase
-  & { isPatron: true }
-  & (_APIPartialPlayerPatreonInactive | _APIPartialPlayerPatreonActive);
-
-/** `patreon` field when the user is not a patron (ie. has never donated) */
-interface _APIPlayerPatreonNonPatron extends _APIPartialPlayerPatreonInactive { isPatron: false }
-
-// #endregion
+/**
+ * `patreon` field when the user is not a patron (ie. has never donated)
+ */
+interface _APIPlayerPatreonNonPatron
+  extends _APIPartialPlayerPatreonPublicInactive {
+  isPatron: false;
+}
 
 /**
- * Information about player's Patreon status.
+ * `patreon` field when the user is a current or former patron
  */
-type APIPlayerPatreon = _APIPartialPlayerPatreonPrivate | _APIPlayerPatreonNonPatron | _APIPlayerPatreonIsPatron;
-export default APIPlayerPatreon;
+type _APIPlayerPatreonIsPatron = _APIPlayerPatreonBase & { isPatron: true } & (
+    | _APIPartialPlayerPatreonPublicInactive
+    | _APIPartialPlayerPatreonPublicActive
+  );

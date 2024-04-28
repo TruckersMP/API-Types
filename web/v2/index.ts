@@ -6,7 +6,7 @@ export * from './rules';
 export * from './server';
 export * from './version';
 
-export const APIWebVersion = '2';
+export const APIWebVersion = '2' as const;
 
 export const APIWebRoutes = {
   /**
