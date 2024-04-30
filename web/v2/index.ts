@@ -126,7 +126,7 @@ export const APIWebRoutes = {
    *
    * @returns APIResponse<APICompanyRoles>
    */
-  companyRoles(companyId: number) {
+  companyRoles(companyId: number | string) {
     return `/vtc/${companyId}/roles` as const;
   },
 
