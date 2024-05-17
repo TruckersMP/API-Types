@@ -2,8 +2,8 @@
 
 <p align="center">
 <a href="https://github.com/TruckersMP/API-Types/blob/HEAD/LICENSE.md"><img alt="GitHub" src="https://img.shields.io/github/license/TruckersMP/api-types"></a>
-<a href="https://www.npmjs.com/package/@truckersmp_official/api-types"><img alt="npm" src="https://img.shields.io/npm/v/@truckersmp_official/api-types"></a>
-<a href="https://www.npmjs.com/package/@truckersmp_official/api-types"><img alt="npm" src="https://img.shields.io/npm/dt/@truckersmp_official/api-types"></a>
+<a href="https://www.npmjs.com/package/@truckersmp/api-types"><img alt="npm" src="https://img.shields.io/npm/v/@truckersmp/api-types"></a>
+<a href="https://www.npmjs.com/package/@truckersmp/api-types"><img alt="npm" src="https://img.shields.io/npm/dt/@truckersmp/api-types"></a>
 <a href="https://github.com/TruckersMP/API-Types/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/TruckersMP/API-Types/actions/workflows/ci.yml/badge.svg"></a>
 </p>
 
@@ -21,8 +21,8 @@ This library supports only documented properties.
 Install with npm / yarn:
 
 ```
-npm install @truckersmp_official/api-types
-yarn add @truckersmp_official/api-types
+npm install @truckersmp/api-types
+yarn add @truckersmp/api-types
 ```
 
 ## Example
@@ -31,8 +31,8 @@ Performing a `GET` request to retrieve player's data using the [axios](https://g
 
 ```ts
 import axios, { AxiosInstance } from 'axios';
-import { APIWebRoutes, APIWebRouteBases } from '@truckersmp_official/api-types/v2';
-import type { APIPlayer, APIResponse } from '@truckersmp_official/api-types/v2';
+import { APIWebRoutes, APIWebRouteBases } from '@truckersmp/api-types/v2';
+import type { APIPlayer, APIResponse } from '@truckersmp/api-types/v2';
 
 class APIManager {
   private readonly web: AxiosInstance;
