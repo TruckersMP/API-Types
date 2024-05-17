@@ -74,9 +74,9 @@ export interface APIGameServer {
   displayorder: number;
 
   /**
-   * If the speed limiter is enabled on the server (110 kmh for ETS2 and 80 mph for ATS).
+   * Whether or not the speed limiter is enabled on the server (110 kmh for ETS2 and 80 mph for ATS).
    */
-  speedlimiter: number;
+  speedlimiter: 0 | 1;
 
   /**
    * If server wide collisions is enabled.

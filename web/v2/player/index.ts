@@ -1,47 +1,5 @@
-/**
- * Information about player's Patreon status.
- */
-export interface APIPlayerPatreon {
-  /**
-   * If the user has donated or is currently donating via Patreon.
-   */
-  isPatron: boolean;
-
-  /**
-   * If the user has an active Patreon subscription.
-   */
-  active: boolean;
-
-  /**
-   * HEX code for subscribed tier.
-   */
-  color: string | null;
-
-  /**
-   * The tier ID of current pledge.
-   */
-  tierId: number | null;
-
-  /**
-   * Current pledge in cents.
-   */
-  currentPledge: number | null;
-
-  /**
-   * Lifetime pledge in cents.
-   */
-  lifetimePledge: number | null;
-
-  /**
-   * Next pledge in cents.
-   */
-  nextPledge: number | null;
-
-  /**
-   * If user has their Patreon information hidden.
-   */
-  hidden: boolean | null;
-}
+import APIPlayerPatreon from './patreon';
+export { type APIPlayerPatreon };
 
 export interface APIPlayerPermissions {
   /**
@@ -63,7 +21,32 @@ export interface APIPlayerPermissions {
 /**
  * Information about player's membership in a virtual trucking company.
  */
-export interface APIPlayerCompanyMember {
+export type APIPlayerCompanyMember = {
+  /**
+   * ID of the company the user belongs to or 0 if not in a company.
+   */
+  id: 0;
+
+  /**
+   * Name of the company the user belongs to or empty if not in a company.
+   */
+  name: '';
+
+  /**
+   * Tag of the company the user belongs to or empty if not in a company.
+   */
+  tag: '';
+
+  /**
+   * If the user is in a company.
+   */
+  inVTC: false;
+
+  /**
+   * Company member ID or 0 if not in a company.
+   */
+  memberID: 0;
+} | {
   /**
    * ID of the company the user belongs to or 0 if not in a company.
    */
@@ -82,7 +65,7 @@ export interface APIPlayerCompanyMember {
   /**
    * If the user is in a company.
    */
-  inVTC: boolean;
+  inVTC: true;
 
   /**
    * Company member ID or 0 if not in a company.
@@ -124,7 +107,12 @@ export interface APIPlayerCompanyHistory {
  * Information about a TruckersMP player.
  * @see https://truckersmp.com/developers/api#operation/get-player-id
  */
-export interface APIPlayer {
+export type APIPlayer = _APIPlayerBase & _APIPlayerVTCHistory & _APIPlayerBanData;
+
+/**
+ * Base interface containing property annotations
+ */
+interface _APIPlayerBase {
   /**
    * The ID of the requested user.
    */
@@ -191,9 +179,10 @@ export interface APIPlayer {
   banned: boolean;
 
   /**
-   * The date and time the ban will expire (UTC) or `null` if not banned or ban is permanent.
+   * @deprecated - v2.21.1.0
+   * This field is no longer provided.
    */
-  bannedUntil: string | null;
+  bannedUntil: null;
 
   /**
    * The number of active bans a user has or `null` if private.
@@ -227,3 +216,33 @@ export interface APIPlayer {
    */
   vtcHistory: APIPlayerCompanyHistory[] | null;
 }
+
+/**
+ * Specific properties of the player object regarding their VTC history
+ */
+type _APIPlayerVTCHistory = Pick<_APIPlayerBase, 'displayVTCHistory' | 'vtcHistory'> &
+  (
+    | {
+        displayVTCHistory: false;
+        vtcHistory: null;
+      }
+    | {
+        displayVTCHistory: true;
+        vtcHistory: APIPlayerCompanyHistory[];
+      }
+  );
+
+/**
+ * Specific properties of the player object regarding bans
+ */
+type _APIPlayerBanData = Pick<_APIPlayerBase, 'displayBans' | 'bansCount'> &
+  (
+    | {
+        displayBans: false;
+        bansCount: null;
+      }
+    | {
+        displayBans: true;
+        bansCount: number;
+      }
+  );

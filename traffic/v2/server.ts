@@ -70,16 +70,30 @@ export interface APITrafficServer {
 /**
  * Response type of the traffic servers API end-point.
  */
-export interface APITrafficServers {
-  /**
-   * Determines whether the service is offline. If this is the case, no servers
-   * and/or traffic information may be provided.
-   */
-  offline: boolean;
+export type APITrafficServers =
+  | {
+      /**
+       * Determines whether the service is offline. If this is the case, no servers
+       * and/or traffic information may be provided.
+       */
+      offline: false;
 
-  /**
-   * A collection of public game servers.
-   * @see https://truckersmp.com/developers/api#operation/get-servers
-   */
-  servers?: APITrafficServer[];
-}
+      /**
+       * A collection of public game servers.
+       * @see https://truckersmp.com/developers/api#operation/get-servers
+       */
+      servers: APITrafficServer[];
+    }
+  | {
+      /**
+       * Determines whether the service is offline. If this is the case, no servers
+       * and/or traffic information may be provided.
+       */
+      offline: true;
+
+      /**
+       * A collection of public game servers.
+       * @see https://truckersmp.com/developers/api#operation/get-servers
+       */
+      servers?: never;
+    };

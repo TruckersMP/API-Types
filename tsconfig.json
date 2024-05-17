@@ -9,7 +9,8 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "declaration": true,
-    "declarationMap": true
+    "declarationMap": true,
+    "strictNullChecks": true
   },
   "exclude": ["./node_modules"]
 }
