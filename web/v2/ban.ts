@@ -14,9 +14,12 @@ export interface APIPlayerBan {
   timeAdded: string;
 
   /**
-   * If the ban is still active.
+   * If the ban is still active or was disabled.
    *
-   * For the user to be banned the `expiration` date has to be passed or `active` has to be false.
+   * When a ban was issued by mistake, staff may deactivate it manually, but it still shows as
+   * inactive in the ban history. Does not change if the ban expires naturally on the expiration date.
+   *
+   * For the user to be banned, the `expiration` date has to be passed or `active` has to be false.
    */
   active: boolean;
 
