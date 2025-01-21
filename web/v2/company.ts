@@ -315,6 +315,11 @@ export interface APICompanyMember {
   steam_id: bigint;
 
   /**
+   * The member's Steam ID.
+   */
+  steamID: string;
+
+  /**
    * The member's role ID.
    */
   role_id: number;
