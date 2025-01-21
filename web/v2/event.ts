@@ -32,6 +32,7 @@ export interface APIGameEventIndex {
  * @see https://truckersmp.com/developers/api#operation/get-v2-events
  * @see https://truckersmp.com/developers/api#operation/get-user-id-events
  * @see https://truckersmp.com/developers/api#operation/get-vtc-id-events
+ * @see https://truckersmp.com/developers/api#operation/get-vtc-id-events-attending
  */
 export interface APIGameEventSimple extends Omit<APIGameEvent, 'attendances'> {
   /**
