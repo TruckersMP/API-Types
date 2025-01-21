@@ -104,6 +104,61 @@ export interface APIPlayerCompanyHistory {
 }
 
 /**
+ * Entry with information of an achievement obtained by the player.
+ */
+export interface APIPlayerAchievement {
+  /**
+   * The ID of the achievement.
+   */
+  id: number;
+
+  /**
+   * The title of the achievement.
+   */
+  title: string;
+
+  /**
+   * The description of the achievement.
+   */
+  description: string;
+
+  /**
+   * The link to the achievement image.
+   */
+  image_url: string;
+
+  /**
+   * The date and time the user was given the achievement (UTC).
+   */
+  achieved_at: string;
+}
+
+/**
+ * Entry with information of an award given to the player.
+ */
+export interface APIPlayerAward {
+  /**
+   * The ID of the award.
+   */
+  id: number;
+
+  /**
+   * The name of the award.
+   */
+  name: string;
+
+  /**
+   * The link to the award image.
+   */
+  image_url: string;
+
+  /**
+   * The date and time the user was given the award (UTC).
+   */
+  awarded_at: string;
+}
+
+/**
  * Information about a TruckersMP player.
  * @see https://truckersmp.com/developers/api#operation/get-player-id
  */
@@ -215,6 +270,20 @@ interface _APIPlayerBase {
    * If the user does not allow to see their company history, `null` will be returned instead.
    */
   vtcHistory: APIPlayerCompanyHistory[] | null;
+
+  /**
+   * List of achievements obtained by the player.
+   *
+   * If the user does not allow to see their achievements, `null` will be returned instead.
+   */
+  achievements: APIPlayerAchievement[] | null;
+
+  /**
+   * List of awards given to the player.
+   *
+   * If the user does not allow to see their awards, `null` will be returned instead.
+   */
+  awards: APIPlayerAward[] | null;
 }
 
 /**
