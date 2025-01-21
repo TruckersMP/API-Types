@@ -57,6 +57,18 @@ export const APIWebRoutes = {
 
   /**
    * Route for:
+   * - GET `/vtc/{companyId}/events/attending`
+   *
+   * @param companyId Unique identifier of a company. Can also be its slug.
+   *
+   * @returns APIResponse<APIGameEventSimple[]>
+   */
+  companyEventsAttending(companyId: number | string) {
+    return `vtc/${companyId}/events/attending` as const;
+  },
+
+  /**
+   * Route for:
    * - GET `/vtc/{companyId}/events/{eventId}`
    *
    * @param companyId Unique identifier of a company. Can also be its slug
