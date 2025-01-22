@@ -64,7 +64,7 @@ export const APIWebRoutes = {
    * @returns APIResponse<APIGameEventSimple[]>
    */
   companyEventsAttending(companyId: number | string) {
-    return `vtc/${companyId}/events/attending` as const;
+    return `/vtc/${companyId}/events/attending` as const;
   },
 
   /**
