@@ -191,6 +191,84 @@ export interface APIGameEventAttendance {
 }
 
 /**
+ * The eligibility of a game event slot. The possible values are:
+ *
+ * - "all" - any company can book the slot
+ * - "partners" - only partners of the company that organized the event can book the slot
+ * - "verified" - only companies with the "Verified" status can book the slot
+ * - "validated_and_verified" - only companies with either "Validated" or "Verified" status can book the slot
+ */
+export type APIGameEventSlotEligibility = 'all' | 'partners' | 'verified' | 'validated_and_verified';
+
+/**
+ * Information of the company that requested a game event slot.
+ */
+export interface APIGameEventSlotRequester {
+  /**
+   * The ID of the company that requested the slot.
+   */
+  id: number;
+
+  /**
+   * The name of the company that requested the slot.
+   */
+  name: string;
+
+  /**
+   * The URL to the logo of the company that requested the slot.
+   */
+  logo_url: string;
+
+  /**
+   * The expected amount of attendees set by the requesting company.
+   *
+   * Value of `0` means the slot was allocated directly.
+   */
+  expected_attendees: number;
+}
+
+/**
+ * Information of the specific game event slot.
+ * @see https://truckersmp.com/developers/api#operation/get-events-id-slots
+ */
+export interface APIGameEventSlot {
+  /**
+   * The slot number.
+   */
+  number: number;
+
+  /**
+   * The slot name.
+   */
+  name: string;
+
+  /**
+   * The URL to the slot image.
+   */
+  image_url: string;
+
+  /**
+   * The total amount of spaces the slot has.
+   */
+  total_spaces: number;
+
+  /**
+   * Whether the slot can be booked by companies.
+   */
+  available: boolean;
+
+  /**
+   * Which companies are eligible to book the slot.
+   */
+  eligibility: APIGameEventSlotEligibility;
+
+  /**
+   * Companies that requested the slot.
+   */
+  requesters: APIGameEventSlotRequester[];
+}
+
+/**
  * Information of the specific game event.
  *
  * @see https://truckersmp.com/developers/api#operation/get-events-id

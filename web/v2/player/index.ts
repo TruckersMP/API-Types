@@ -8,9 +8,9 @@ export interface APIPlayerPermissions {
   isStaff: boolean;
 
   /**
-   * If the user is part of upper staff within the TruckersMP team.
+   * If the user is part of management within the TruckersMP team.
    */
-  isUpperStaff: boolean;
+  isManagement: boolean;
 
   /**
    * If the user has Game Moderator permissions.

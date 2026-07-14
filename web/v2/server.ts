@@ -4,6 +4,63 @@
 export type APIServerGameName = 'ETS2' | 'ATS';
 
 /**
+ * Information of the event request assigned to a game server.
+ */
+export interface APIGameServerEventRequest {
+  /**
+   * The ID of the event request.
+   */
+  id: number;
+
+  /**
+   * The ID of the event for which the event request has been made.
+   *
+   * `null` if the event request was created directly.
+   */
+  event_id: number | null;
+
+  /**
+   * The TruckersMP ID of the user who created the request.
+   */
+  user_id: number;
+
+  /**
+   * Information about the event request.
+   */
+  info: string;
+
+  /**
+   * Temporary rules for the server.
+   */
+  rules: string;
+
+  /**
+   * The date and time the server starts at (UTC).
+   */
+  start_at: string;
+
+  /**
+   * The date and time the server shuts down at (UTC).
+   */
+  end_at: string;
+
+  /**
+   * The URL to the event request banner.
+   */
+  header_image: string | null;
+
+  /**
+   * The URL to the page of the event.
+   */
+  event_link: string | null;
+
+  /**
+   * The URL to the forum topic of the event.
+   */
+  forum_link: string | null;
+}
+
+/**
  * Information of a TruckersMP server and its status.
  * @see https://truckersmp.com/developers/api#operation/get-servers
  */
@@ -117,6 +174,13 @@ export interface APIGameServer {
    * Server tick rate (in ms).
    */
   syncdelay: number;
+
+  /**
+   * The event request currently assigned to the server.
+   *
+   * This field requires `event` to be `true`, but is not guaranteed.
+   */
+  event_request?: APIGameServerEventRequest;
 }
 
 /**

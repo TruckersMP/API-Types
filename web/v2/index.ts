@@ -157,6 +157,18 @@ export const APIWebRoutes = {
 
   /**
    * Route for:
+   * - GET `/vtc/{companyId}/partners`
+   *
+   * @param companyId Unique identifier of a company. Can also be its slug.
+   *
+   * @returns APIResponse<APICompanyPartnerships>
+   */
+  companyPartners(companyId: number | string) {
+    return `/vtc/${companyId}/partners` as const;
+  },
+
+  /**
+   * Route for:
    * - GET `/event/{id}`
    *
    * @param id Unique identifier of the event
@@ -165,6 +177,18 @@ export const APIWebRoutes = {
    */
   event(id: number) {
     return `/events/${id}` as const;
+  },
+
+  /**
+   * Route for:
+   * - GET `/events/{id}/slots`
+   *
+   * @param id Unique identifier of the event.
+   *
+   * @returns APIResponse<APIGameEventSlot[]>
+   */
+  eventSlots(id: number) {
+    return `/events/${id}/slots` as const;
   },
 
   /**

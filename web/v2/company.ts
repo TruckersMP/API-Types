@@ -19,7 +19,7 @@ export interface APICompanyIndex {
  * A simplified structure of the virtual trucking company.
  * @see https://truckersmp.com/developers/api#operation/get-vtc
  */
-export type APICompanySimple = Omit<APICompany, 'logo' | 'cover' | 'information' | 'rules' | 'requirements'>;
+export type APICompanySimple = Omit<APICompany, 'logo' | 'cover' | 'information' | 'rules' | 'requirements' | 'dlcs'>;
 
 /**
  * A collection of social media of a virtual trucking company.
@@ -147,6 +147,14 @@ export interface APICompany {
   games: APICompanyGames;
 
   /**
+   * The company's required DLCs.
+   *
+   * - Empty array when no DLCs are required;
+   * - Record<string, string> when DLCs are required, where the key is the Steam app ID and value is the DLC's name.
+   */
+  dlcs: Record<string, string> | [];
+
+  /**
    * The company's member count.
    */
   members_count: number;
@@ -264,6 +272,11 @@ export interface APICompanyRole {
   order: number;
 
   /**
+   * The current color of the role.
+   */
+  color: string;
+
+  /**
    * If the role has owner permissions.
    */
   owner: boolean;
@@ -310,6 +323,11 @@ export interface APICompanyMember {
   username: string;
 
   /**
+   * The URL to the avatar used on the website.
+   */
+  avatar: string;
+
+  /**
    * The member's Steam ID.
    */
   steam_id: bigint;
@@ -317,7 +335,17 @@ export interface APICompanyMember {
   /**
    * The member's Steam ID.
    */
+  steamID64: bigint;
+
+  /**
+   * The member's Steam ID.
+   */
   steamID: string;
+
+  /**
+   * The member's roles in the company.
+   */
+  roles: APICompanyRole[];
 
   /**
    * The member's role ID.
@@ -338,4 +366,56 @@ export interface APICompanyMember {
    * The date and time the member joined at (UTC).
    */
   joinDate: string;
+}
+
+/**
+ * Information of the virtual trucking company's partners.
+ * @see https://truckersmp.com/developers/api#operation/get-vtc-id-partners
+ */
+export interface APICompanyPartnerships {
+  /**
+   * A list of the actual company's partners.
+   */
+  partners: APICompanyPartnership[];
+
+  /**
+   * The number of pending partnership requests involving the company.
+   */
+  pending_requests_count?: number;
+}
+
+/**
+ * Information of a partnership between two virtual trucking companies.
+ * @see https://truckersmp.com/developers/api#operation/get-vtc-id-partners
+ */
+export interface APICompanyPartnership {
+  /**
+   * The ID of the partnership.
+   */
+  id: number;
+
+  /**
+   * The status of the partnership. The API returns only accepted partnership requests.
+   */
+  status: 'Accepted';
+
+  /**
+   * The date and time the partnership was requested at by the sender (UTC).
+   */
+  created_at: string;
+
+  /**
+   * The date and time the partnership was updated at (UTC). This will be due to the status changing.
+   */
+  updated_at: string;
+
+  /**
+   * Data of the company that sent the partnership request.
+   */
+  sender: APICompany;
+
+  /**
+   * Data of the company that received the partnership request.
+   */
+  receiver: APICompany;
 }
