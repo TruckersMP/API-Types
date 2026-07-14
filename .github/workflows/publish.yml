@@ -3,7 +3,7 @@ name: Publish Package
 on:
   workflow_dispatch:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   publish_npmjs:
@@ -11,16 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'TruckersMP'
 
+    permissions:
+      contents: read
+      # Required for npm trusted publishing (OIDC) and provenance attestations.
+      id-token: write
+
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
-      - name: Install Node v20
-        uses: actions/setup-node@v4
+      - name: Install Node v24
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
-          registry-url: https://registry.npmjs.org
 
       - name: Install Dependencies
         run: npm ci
@@ -29,6 +33,4 @@ jobs:
         run: npm run build
 
       - name: Publish
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --provenance --access public
