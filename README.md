@@ -27,25 +27,16 @@ yarn add @truckersmp/api-types
 
 ## Example
 
-Performing a `GET` request to retrieve player's data using the [axios](https://github.com/axios/axios) library:
+Performing a `GET` request to retrieve player's data using the built-in Fetch API:
 
 ```ts
-import axios, { AxiosInstance } from 'axios';
 import { APIWebRoutes, APIWebRouteBases } from '@truckersmp/api-types/v2';
 import type { APIPlayer, APIResponse } from '@truckersmp/api-types/v2';
 
 class APIManager {
-  private readonly web: AxiosInstance;
-
-  public constructor() {
-    this.web = axios.create({
-      baseURL: APIWebRouteBases.api,
-    });
-  }
-
   public player(id: bigint): Promise<APIResponse<APIPlayer>> {
-    return this.web.get<APIResponse<APIPlayer>>(APIWebRoutes.player(id))
-      .then(response => response.data);
+    return fetch(`${APIWebRouteBases.api}${APIWebRoutes.player(id)}`)
+      .then(response => response.json() as Promise<APIResponse<APIPlayer>>);
   }
 }
 
